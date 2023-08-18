@@ -62,7 +62,7 @@ internal class Program
    static void DisplayInfo()
     {
         //글자 색상변경 
-        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("상태보기");
         Console.ResetColor();
 
@@ -90,6 +90,42 @@ internal class Program
 
     static void DisplayInven()
     {
+        //글자 색상변경 
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("인벤토리");
+        Console.ResetColor();
+
+        Console.WriteLine("보유 중인 아이템을 관리 할 수 있습니다.");
+        Console.WriteLine();
+
+        //아이템 목록 
+        Console.WriteLine("[아이템  목록]");
+        Console.WriteLine("---이름---|----효과---|----설명----");//아이템의 이름 효과 설명 기능 구현 필요
+        Console.WriteLine("---이름---|----효과---|----설명----");
+
+
+        Console.WriteLine("\n1. 장착관리\n0. 돌아가기");
+        Console.WriteLine();
+        Console.WriteLine("원하시는 행동을 입력해주세요.");
+
+        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        Console.Write(">>");
+        Console.ResetColor();
+
+        //처음 화면으로 돌아가기와 아이템 장착 관리 
+        int input = CheakInput(0, 1);
+        switch (input)
+        {
+            case 0:
+                DisplayFirst();
+                break;
+            case 1://장착관리 화면으로 이동 
+                DisplayFirst();
+                break;
+
+
+        }
+        
 
     }
 
