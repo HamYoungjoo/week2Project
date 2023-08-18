@@ -12,8 +12,10 @@ internal class Program
 
     static void DataSetting()
     {
-        //플레이어 정보 셋팅
-        player = new Character();
+        //플레이어 정보 셋팅 (이름, 직업, 레벨, 공격력, 방어력, 체력, gold)
+        player = new Character("HAM", "초보 개발자", 1, 10, 5, 100, 1500);
+
+        //인벤토리 내 아이템 설정 
     }
 
 
@@ -120,7 +122,7 @@ internal class Program
                 DisplayFirst();
                 break;
             case 1://장착관리 화면으로 이동 
-                DisplayFirst();
+                DisplayFirst(); // 메소드 생성해야 함 . 
                 break;
 
 
@@ -129,8 +131,28 @@ internal class Program
 
     }
 
-    public class Character
+    public class Character // 캐릭터 정보 생성
+
     {
+        //플레이어 정보 셋팅 (이름, 직업, 레벨, 공격력, 방어력, 체력, gold)
+        public Character(string name, string job, int lv , int atk , int def, int hp, int g)
+        {
+            Name = name;
+            Job = job;
+            Lv = lv;
+            Atk = atk;
+            Def = def;
+            Hp = hp;
+            G = g;
+        }
+
+        public string Name { get; }
+        public string Job { get; }
+        public int Lv { get; }
+        public int Atk { get; }
+        public int Def { get; }
+        public int Hp { get; }
+        public int G { get; }
     }
 }
 
