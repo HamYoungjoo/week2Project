@@ -26,7 +26,7 @@ internal class Program
         Console.WriteLine("\n1. 상태보기\n2. 인벤토리.");
         Console.WriteLine("\n원하시는 행동을 입력해주세요.");
 
-        int input = Choiceinput(1, 2);
+        int input = CheakInput(1, 2);
         switch(input)
         {
             case 1:
@@ -41,13 +41,19 @@ internal class Program
 
     }
 
-    static int Choiceinput(int min,int max)
+    static int CheakInput(int min,int max)
     {
         while (true)
         {
             string input = Console.ReadLine();
+            bool parseSuccess = int.TryParse(input, out var ret);
+            if (parseSuccess)
+            {
+                if (ret >= min && ret <= max)
+                    return ret;
+            }
 
-            
+            Console.WriteLine("잘못된 입력 입니다.");
         }
     }
 
@@ -55,7 +61,18 @@ internal class Program
 
    static void DisplayInfo()
     {
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine("상태보기");
+        Console.ResetColor();
 
+
+        int input = CheakInput(0, 0);
+        switch (input)
+        {
+            case 0:
+                DisplayFirst();
+                break;
+        }
     }
 
     static void DisplayInven()
