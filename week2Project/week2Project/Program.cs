@@ -18,7 +18,7 @@ internal class Program
 
 
 
-    static void DisplayFirst()
+    static void DisplayFirst() //처음화면 
     {
         Console.Clear();
 
@@ -42,7 +42,7 @@ internal class Program
     }
 
     static int CheakInput(int min,int max)
-    {
+    { //입력한 숫자가 선택범위인지 체크 
         while (true)
         {
             string input = Console.ReadLine();
@@ -61,11 +61,24 @@ internal class Program
 
    static void DisplayInfo()
     {
-        Console.ForegroundColor = ConsoleColor.Magenta;
+        //글자 색상변경 
+        Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine("상태보기");
         Console.ResetColor();
 
+        Console.WriteLine("캐릭터의 정보가 표시됩니다.");
+        Console.WriteLine();
 
+        //레벨, 이름, 직업, 공격력, 방어력, 체력, gold 
+        Console.WriteLine();//레벨 
+        Console.WriteLine();//이름 및 직업 
+        Console.WriteLine();//공격력 
+        Console.WriteLine();//방어력 
+        Console.WriteLine();//체력 
+        Console.WriteLine();//골드 
+       
+        Console.WriteLine("\n0. 돌아가기");
+        //처음 화면으로 돌아가기 
         int input = CheakInput(0, 0);
         switch (input)
         {
