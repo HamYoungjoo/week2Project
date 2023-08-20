@@ -71,13 +71,14 @@ internal class Program
         Console.WriteLine("캐릭터의 정보가 표시됩니다.");
         Console.WriteLine();
 
-        //레벨, 이름, 직업, 공격력, 방어력, 체력, gold 
-        Console.WriteLine();//레벨 
-        Console.WriteLine();//이름 및 직업 
-        Console.WriteLine();//공격력 
-        Console.WriteLine();//방어력 
-        Console.WriteLine();//체력 
-        Console.WriteLine();//골드 
+        //레벨, 이름, 직업, 공격력, 방어력, 체력, gold
+        //$"{변수명}"   (문자열 보간 이용)
+        Console.WriteLine($"Lv : {player.Lv}");//레벨 
+        Console.WriteLine($"이름 : {player.Name}({player.Job})");//이름 및 직업 
+        Console.WriteLine($"공격력 : {player.Atk}");//공격력 
+        Console.WriteLine($"방어력 : {player.Def}");//방어력 
+        Console.WriteLine($"HP : {player.Hp}");//체력 
+        Console.WriteLine($"Gold : {player.G}");//골드 
        
         Console.WriteLine("\n0. 돌아가기");
         //처음 화면으로 돌아가기 
