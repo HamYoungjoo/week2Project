@@ -18,6 +18,7 @@ internal class Program
         //인벤토리 내 아이템 설정 
     }
 
+ 
 
 
     static void DisplayFirst() //처음화면 
@@ -73,12 +74,13 @@ internal class Program
 
         //레벨, 이름, 직업, 공격력, 방어력, 체력, gold
         //$"{변수명}"   (문자열 보간 이용)
-        Console.WriteLine($"Lv : {player.Lv}");//레벨 
-        Console.WriteLine($"이름 : {player.Name}({player.Job})");//이름 및 직업 
-        Console.WriteLine($"공격력 : {player.Atk}");//공격력 
-        Console.WriteLine($"방어력 : {player.Def}");//방어력 
-        Console.WriteLine($"HP : {player.Hp}");//체력 
-        Console.WriteLine($"Gold : {player.G}");//골드 
+        //어느정도 틀을 만들고 컬러배열 다르게 해보기 
+        Console.WriteLine($"Lv : {player.Lv}");
+        Console.WriteLine($"이름 : {player.Name}({player.Job})");
+        Console.WriteLine($"공격력 : {player.Atk}");
+        Console.WriteLine($"방어력 : {player.Def}");
+        Console.WriteLine($"HP : {player.Hp}");
+        Console.WriteLine($"Gold : {player.G}");
        
         Console.WriteLine("\n0. 돌아가기");
         //처음 화면으로 돌아가기 
@@ -93,6 +95,7 @@ internal class Program
 
     static void DisplayInven()
     {
+        Console.WriteLine();
         //글자 색상변경 
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("인벤토리");
@@ -123,14 +126,44 @@ internal class Program
                 DisplayFirst();
                 break;
             case 1://장착관리 화면으로 이동 
-                DisplayFirst(); // 메소드 생성해야 함 . 
+                InvenSetting(); 
                 break;
 
 
         }
-        
+
+     
 
     }
+        static void InvenSetting() //인벤토리 장착관리 
+        {
+
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("인벤토리");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write("- 장착관리");
+            Console.ResetColor();
+
+            Console.WriteLine("보유 중인 아이템을 관리 할 수 있습니다.");
+            Console.WriteLine();
+
+            //아이템 목록 
+            Console.WriteLine("[아이템  목록]"); // 목록 앞 색이 다른 숫자가 나타나서 누르면 장착 기능 
+            Console.WriteLine("---이름---|----효과---|----설명----");//장착중인 아이템의 확인 표시 구현 필요  (장착한 아이템이 상태보기 창에서도 반영되어야 함)
+            Console.WriteLine("---이름---|----효과---|----설명----");
+
+
+            Console.WriteLine("\n0. 돌아가기");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write(">>");
+            Console.ResetColor();
+    }
+
 
     public class Character // 캐릭터 정보 생성
 
