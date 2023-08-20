@@ -28,6 +28,9 @@ internal class Program
         Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다\n이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
         Console.WriteLine("\n1. 상태보기\n2. 인벤토리.");
         Console.WriteLine("\n원하시는 행동을 입력해주세요.");
+        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        Console.Write(">>");
+        Console.ResetColor();
 
         int input = CheakInput(1, 2);
         switch(input)
@@ -64,6 +67,7 @@ internal class Program
 
    static void DisplayInfo()
     {
+        Console.WriteLine();
         //글자 색상변경 
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("상태보기");
