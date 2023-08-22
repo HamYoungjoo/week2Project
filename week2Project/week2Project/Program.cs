@@ -166,8 +166,14 @@ internal class Program
 
         Console.WriteLine($"Lv : {player.Lv}");
         Console.WriteLine($"이름 : {player.Name}({player.Job})");
-        Console.WriteLine($"공격력 : {OriginAtk}{TotalAtk} {equippedItemAtk}");
-        Console.WriteLine($"방어력 : {OriginDef}{TotalDef} {equippedItemDef}");
+        Console.Write($"공격력 : {OriginAtk}{TotalAtk}");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($" {equippedItemAtk}");
+        Console.ResetColor();
+        Console.Write($"방어력 : {OriginDef}{TotalDef}");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($" {equippedItemDef}");
+        Console.ResetColor();
         Console.WriteLine($"HP : {player.Hp}");
         Console.WriteLine($"Gold : {player.G}");
        
