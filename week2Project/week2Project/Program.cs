@@ -86,8 +86,12 @@ internal class Program
         //어느정도 틀을 만들고 컬러배열 다르게 해보기 
         Console.WriteLine($"Lv : {player.Lv}");
         Console.WriteLine($"이름 : {player.Name}({player.Job})");
-        Console.WriteLine($"공격력 : {player.Atk}");
-        Console.WriteLine($"방어력 : {player.Def}");
+
+        
+        string equippedItemAtk = equipItem.IsEquipped1 ?  equipItem.ItemAtk.ToString() : "";//공격 아이템 장착 시
+        string equippedItemDef = equipItem.IsEquipped2 ? equipItem.ItemDef.ToString() : "";//방어 아이템 장착 시 
+        Console.WriteLine($"공격력 : {player.Atk} (+{equippedItemAtk})");
+        Console.WriteLine($"방어력 : {player.Def} (+{equippedItemDef})");
         Console.WriteLine($"HP : {player.Hp}");
         Console.WriteLine($"Gold : {player.G}");
        
@@ -99,6 +103,16 @@ internal class Program
             case 0:
                 DisplayFirst();
                 break;
+        }
+
+        if (equipItem.IsEquipped1 = !equipItem.IsEquipped1) // 공격력 더하기 ..
+        {
+            int AtkUp = player.Atk + equipItem.ItemAtk;
+
+        }
+        else if (equipItem.IsEquipped2 = !equipItem.IsEquipped2) //방어력 더하기 ..
+        {
+
         }
     }
 
@@ -126,7 +140,7 @@ internal class Program
         Console.ForegroundColor = ConsoleColor.DarkMagenta;
         Console.Write(">>");
         Console.ResetColor();
-
+        
         int input = CheakInput(0, 1);
         switch (input)
         {
@@ -186,7 +200,7 @@ internal class Program
             case 2:
                 CheckEquipped(2);
                 InvenSetting();
-                if (equipItem.IsEquipped2 = !equipItem.IsEquipped1)
+                if (equipItem.IsEquipped2 = !equipItem.IsEquipped2)
                 {
                     CheckEquipped(2);
                     DisplayInven();
@@ -209,7 +223,7 @@ internal class Program
 
     public class item //아이템 정보 생성 
     {
-        internal bool IsEquipped1;
+        internal bool IsEquipped1; //아이템 장착 확인 bool 
         internal bool IsEquipped2;
 
         public item(string itemName1, string itemName2, int itemAtk, int itemDef)
