@@ -114,8 +114,11 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine("[아이템  목록]");
 
-        Console.WriteLine($"{equipItem.ItemName1}|방어력 +{equipItem.ItemAtk}|----설명----"); // 아이템 만들어보기 
-        Console.WriteLine($"{equipItem.ItemName2}|방어력 +{equipItem.ItemDef}|----설명----");
+        string equippedSymbol1 = equipItem.IsEquipped1 ? "[E]" : "";
+        string equippedSymbol2 = equipItem.IsEquipped2 ? "[E]" : ""; //장착관리에서 장착 해제시 인벤토리 화면에서도 확인 가능 
+
+        Console.WriteLine($"{equippedSymbol1} {equipItem.ItemName1}|방어력 +{equipItem.ItemAtk}|----설명----"); // 아이템 만들어보기 
+        Console.WriteLine($"{equippedSymbol2} {equipItem.ItemName2}|방어력 +{equipItem.ItemDef}|----설명----");
 
         Console.WriteLine("\n1. 장착관리\n0. 돌아가기");
         Console.WriteLine();
@@ -174,10 +177,20 @@ internal class Program
             case 1: // 장착관리 화면에서 [E] 표시 켰다 끄기
                 CheckEquipped(1);
                 InvenSetting();
+                if(equipItem.IsEquipped1 = !equipItem.IsEquipped1)
+                {
+                    CheckEquipped(1);
+                    DisplayInven();
+                }
                 break;
             case 2:
                 CheckEquipped(2);
                 InvenSetting();
+                if (equipItem.IsEquipped2 = !equipItem.IsEquipped1)
+                {
+                    CheckEquipped(2);
+                    DisplayInven();
+                }
                 break;
         }
 
