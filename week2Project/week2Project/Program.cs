@@ -20,13 +20,13 @@ internal class Program
         //플레이어 정보 셋팅 (이름, 직업, 레벨, 공격력, 방어력, 체력, gold)
         player = new Character("HAM", "초보 개발자", 1, 10, 5, 100, 1500);
 
-        equipItem = new item("아이템 이름 1","아이템 이름 2", 7 , 5); //인벤토리 내 아이템 설정 
+        //인벤토리 내 아이템 설정 (아이템1이름, 아이템2이름, 아이템3이름, 아이템1 효과(공격력), 아이템2 효과(방어력), 아이템 3 효과(체력))
+        equipItem = new item("아이템 이름 1","아이템 이름 2","아이템 이름 3", 7 , 5, 10); 
     }
 
     static void DisplayIntro()
     {
         Console.Clear();
-
 
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
@@ -56,11 +56,15 @@ internal class Program
         
 
         Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine("----------------------------------던전을 탈출하고 초보개발자를 벗어나자!!----------------------------------");
+        Console.ResetColor();
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> '1'을 입력하고 입장하기 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         Console.ResetColor();
         Console.WriteLine();
+
 
         int input = CheakInput(0, 1);
         switch (input)
@@ -89,13 +93,11 @@ internal class Program
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("\n1. ");
         Console.ResetColor();
-
         Console.WriteLine("상태보기");
 
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("\n2. ");
         Console.ResetColor();
-
         Console.WriteLine("인벤토리");
         Console.WriteLine("\n원하시는 행동을 입력해주세요.");
 
@@ -139,6 +141,8 @@ internal class Program
 
    static void DisplayInfo()
     {
+        Console.Clear();
+
         Console.WriteLine();
         //글자 색상변경 
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -156,26 +160,34 @@ internal class Program
         //$"{변수명}"   (문자열 보간 이용)
 
         int totalAtk = player.Atk + equipItem.ItemAtk; //기본 공격력 + 아이템 효과 공격력의 합 
-        int totalDef = player.Def + equipItem.ItemDef; //기본 방력 + 아이템 효과 방어력의 합 
+        int totalDef = player.Def + equipItem.ItemDef; //기본 방어력 + 아이템 효과 방어력의 합
+        int totalHp = player.Hp + equipItem.ItemHp;
         string TotalAtk = equipItem.IsEquipped1 ? totalAtk.ToString() : ""; //아이템 장착 시 보이게 설정 
         string TotalDef = equipItem.IsEquipped2 ? totalDef.ToString() : "";
-        string OriginAtk = !equipItem.IsEquipped1 ? player.Atk.ToString() : "";// 캐릭터 원래의 기본 공격력 , 아이템 장착시 보이지 않게 설정 
-        string OriginDef = !equipItem.IsEquipped2 ? player.Def.ToString() : "";// 캐릭터 원래의 기본 방어력 
+        string TotalHp = equipItem.IsEquipped3 ? totalHp.ToString() : "";
+        string OriginalAtk = !equipItem.IsEquipped1 ? player.Atk.ToString() : "";// 캐릭터 원래의 기본 공격력 , 아이템 장착시 보이지 않게 설정 
+        string OriginalDef = !equipItem.IsEquipped2 ? player.Def.ToString() : "";// 캐릭터 원래의 기본 방어력
+        string OriginalHp = !equipItem.IsEquipped2 ? player.Hp.ToString() : "";
         string equippedItemAtk = equipItem.IsEquipped1 ? "( + " + equipItem.ItemAtk.ToString() + " )" : "";//공격 아이템 장착 시
         string equippedItemDef = equipItem.IsEquipped2 ? "( + " + equipItem.ItemDef.ToString() + " )" : "";//방어 아이템 장착 시
+        string equippedItemHp = equipItem.IsEquipped2 ? "( + " + equipItem.ItemHp.ToString() + " )" : "";
 
-        Console.WriteLine($"Lv : {player.Lv}");
-        Console.WriteLine($"이름 : {player.Name}({player.Job})");
-        Console.Write($"공격력 : {OriginAtk}{TotalAtk}");
+        Console.WriteLine($"레  벨 : {player.Lv}");
+        Console.WriteLine($"이  름 : {player.Name}");
+        Console.WriteLine($"직  업 : {player.Job}");
+        Console.Write($"공격력 : {OriginalAtk}{TotalAtk}");
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($" {equippedItemAtk}");
         Console.ResetColor();
-        Console.Write($"방어력 : {OriginDef}{TotalDef}");
+        Console.Write($"방어력 : {OriginalDef}{TotalDef}");
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($" {equippedItemDef}");
         Console.ResetColor();
-        Console.WriteLine($"HP : {player.Hp}");
-        Console.WriteLine($"Gold : {player.G}");
+        Console.Write($"체  력 : {OriginalHp}{TotalHp}");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"{equippedItemHp}");
+        Console.ResetColor();
+        Console.WriteLine($"소지금 : {player.G} G");
        
         Console.WriteLine("\n0. 돌아가기");
         //처음 화면으로 돌아가기 
@@ -191,6 +203,8 @@ internal class Program
 
     static void DisplayInven()
     {
+        Console.Clear();
+
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("인벤토리");
@@ -205,12 +219,14 @@ internal class Program
         //아이템 목록 
         Console.WriteLine();
         Console.WriteLine("[아이템  목록]");
-
+        Console.WriteLine();
         string equippedSymbol1 = equipItem.IsEquipped1 ? "[E]" : "";
         string equippedSymbol2 = equipItem.IsEquipped2 ? "[E]" : ""; //장착관리에서 장착 해제시 인벤토리 화면에서도 확인 가능 
+        string equippedSymbol3 = equipItem.IsEquipped3 ? "[E]" : "";
 
-        Console.WriteLine($"{equippedSymbol1} {equipItem.ItemName1}|공격력 +{equipItem.ItemAtk}|----설명----"); // 아이템 만들어보기 
-        Console.WriteLine($"{equippedSymbol2} {equipItem.ItemName2}|방어력 +{equipItem.ItemDef}|----설명----");
+        Console.WriteLine($"{equippedSymbol1} {equipItem.ItemName1}|공격력 + {equipItem.ItemAtk}|----설명----"); // 아이템 만들어보기 
+        Console.WriteLine($"{equippedSymbol2} {equipItem.ItemName2}|방어력 + {equipItem.ItemDef}|----설명----");
+        Console.WriteLine($"{equippedSymbol3} {equipItem.ItemName3}|방어력 +{equipItem.ItemHp}|----설명----");
 
         Console.WriteLine("\n1. 장착관리\n0. 돌아가기");
         Console.WriteLine();
@@ -233,6 +249,8 @@ internal class Program
 
     static void InvenSetting() //인벤토리 장착관리 
     {
+        Console.Clear();
+
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Write("인벤토리");
@@ -249,12 +267,14 @@ internal class Program
         //아이템 목록 
         Console.WriteLine();
         Console.WriteLine("[아이템  목록]");
-       
+        Console.WriteLine();
         string equippedSymbol1 = equipItem.IsEquipped1 ? "[E]" : ""; // 1번 아이템 장착 표시 
-        string equippedSymbol2 = equipItem.IsEquipped2 ? "[E]" : ""; 
+        string equippedSymbol2 = equipItem.IsEquipped2 ? "[E]" : "";
+        string equippedSymbol3 = equipItem.IsEquipped3 ? "[E]" : "";
 
         Console.WriteLine($"- 1 {equippedSymbol1} {equipItem.ItemName1}|공격력 +{equipItem.ItemAtk}|----설명----");
         Console.WriteLine($"- 2 {equippedSymbol2} {equipItem.ItemName2}|방어력 +{equipItem.ItemDef}|----설명----");
+        Console.WriteLine($"- 3 {equippedSymbol3} {equipItem.ItemName2}|방어력 +{equipItem.ItemDef}|----설명----");
 
         Console.WriteLine("\n0. 돌아가기");
         Console.WriteLine();
@@ -263,7 +283,7 @@ internal class Program
         Console.Write(">>");
         Console.ResetColor();
 
-        int input = CheakInput(0, 2);
+        int input = CheakInput(0, 3);
         switch (input)
         {
             case 0:
@@ -287,6 +307,15 @@ internal class Program
                     DisplayInven();
                 }
                 break;
+            case 3:
+                CheckEquipped(3);
+                InvenSetting();
+                if(equipItem.IsEquipped3 = !equipItem.IsEquipped3)
+                {
+                    CheckEquipped(3);
+                    DisplayInven();
+                }
+                break;
         }
 
         static void CheckEquipped(int itemNumber) // [E] 표시 켰다 끄기 확인
@@ -299,26 +328,36 @@ internal class Program
             {
                 equipItem.IsEquipped2 = !equipItem.IsEquipped2;
             }
+            else if (itemNumber == 3)
+            {
+                equipItem.IsEquipped3 = !equipItem.IsEquipped3;
+
+            }
         }
     }
 
     public class item //아이템 정보 생성 
     {
-        internal bool IsEquipped1; //아이템 장착 확인 bool 
+        internal bool IsEquipped1; //아이템 장착 확인 bool 필드
         internal bool IsEquipped2;
+        internal bool IsEquipped3;
 
-        public item(string itemName1, string itemName2, int itemAtk, int itemDef)
+        public item(string itemName1, string itemName2, string itemName3, int itemAtk, int itemDef, int itemHp)
         {
             ItemName1 = itemName1;
             ItemName2 = itemName2;
+            ItemName3 = itemName3;
             ItemAtk = itemAtk;
             ItemDef = itemDef;
+            ItemHp = itemHp;
         }
 
         public string ItemName1 { get; }
         public string ItemName2 { get; }
+        public string ItemName3 { get; }
         public int ItemAtk { get; }
         public int ItemDef { get; }
+        public int ItemHp { get; }
     }
 
 
