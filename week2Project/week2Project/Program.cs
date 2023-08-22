@@ -87,11 +87,16 @@ internal class Program
         Console.WriteLine($"Lv : {player.Lv}");
         Console.WriteLine($"이름 : {player.Name}({player.Job})");
 
-        
-        string equippedItemAtk = equipItem.IsEquipped1 ?  equipItem.ItemAtk.ToString() : "";//공격 아이템 장착 시
-        string equippedItemDef = equipItem.IsEquipped2 ? equipItem.ItemDef.ToString() : "";//방어 아이템 장착 시 
-        Console.WriteLine($"공격력 : {player.Atk} (+{equippedItemAtk})");
-        Console.WriteLine($"방어력 : {player.Def} (+{equippedItemDef})");
+        int totalAtk = player.Atk + equipItem.ItemAtk; //기본 공격력 + 아이템 효과 공격력의 합 
+        int totalDef = player.Def + equipItem.ItemDef; //기본 방력 + 아이템 효과 방어력의 합 
+        string TotalAtk = equipItem.IsEquipped1 ? totalAtk.ToString() : ""; //아이템 장착 시 보이게 설정 
+        string TotalDef = equipItem.IsEquipped2 ? totalDef.ToString() : ""; 
+        string OriginAtk = !equipItem.IsEquipped1 ? player.Atk.ToString() : "";// 캐릭터 원래의 기본 공격력 , 아이템 장착시 보이지 않게 설정 
+        string OriginDef = !equipItem.IsEquipped2 ? player.Def.ToString() : "";// 캐릭터 원래의 기본 방어력 
+        string equippedItemAtk = equipItem.IsEquipped1 ?  "( + " + equipItem.ItemAtk.ToString() + " )" : "";//공격 아이템 장착 시
+        string equippedItemDef = equipItem.IsEquipped2 ? "( + " + equipItem.ItemDef.ToString() + " )": "";//방어 아이템 장착 시 
+        Console.WriteLine($"공격력 : {OriginAtk}{TotalAtk} {equippedItemAtk}");
+        Console.WriteLine($"방어력 : {OriginDef}{TotalDef} {equippedItemDef}");
         Console.WriteLine($"HP : {player.Hp}");
         Console.WriteLine($"Gold : {player.G}");
        
@@ -105,15 +110,6 @@ internal class Program
                 break;
         }
 
-        if (equipItem.IsEquipped1 = !equipItem.IsEquipped1) // 공격력 더하기 ..
-        {
-            int AtkUp = player.Atk + equipItem.ItemAtk;
-
-        }
-        else if (equipItem.IsEquipped2 = !equipItem.IsEquipped2) //방어력 더하기 ..
-        {
-
-        }
     }
 
     static void DisplayInven()
@@ -168,9 +164,9 @@ internal class Program
         //아이템 목록 
         Console.WriteLine();
         Console.WriteLine("[아이템  목록]");
-
-        string equippedSymbol1 = equipItem.IsEquipped1 ? "[E]" : ""; // 아이템 장착 표시 
-        string equippedSymbol2 = equipItem.IsEquipped2 ? "[E]" : "";
+       
+        string equippedSymbol1 = equipItem.IsEquipped1 ? "[E]" : ""; // 1번 아이템 장착 표시 
+        string equippedSymbol2 = equipItem.IsEquipped2 ? "[E]" : ""; 
 
         Console.WriteLine($"1 {equippedSymbol1} {equipItem.ItemName1}|방어력 +{equipItem.ItemAtk}|----설명----");
         Console.WriteLine($"2 {equippedSymbol2} {equipItem.ItemName2}|방어력 +{equipItem.ItemDef}|----설명----");
