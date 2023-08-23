@@ -20,7 +20,12 @@ internal class Program
         //플레이어 정보 셋팅 (이름, 직업, 레벨, 공격력, 방어력, 체력, gold)
         player = new Character("HAM", "초보 개발자", 1, 10, 5, 100, 1500);
 
+<<<<<<< Updated upstream
         equipItem = new item("아이템 이름 1","아이템 이름 2", 7 , 5); //인벤토리 내 아이템 설정 
+=======
+        //인벤토리 내 아이템 설정 (아이템1이름, 아이템2이름, 아이템3이름, 아이템1 효과(공격력), 아이템2 효과(방어력), 아이템 3 효과(체력))
+        equipItem = new item("분노의 키보드","안녕안녕 안경","핵불면  커피", 7 , 5, 10); 
+>>>>>>> Stashed changes
     }
 
     static void DisplayIntro()
@@ -253,8 +258,14 @@ internal class Program
         string equippedSymbol1 = equipItem.IsEquipped1 ? "[E]" : ""; // 1번 아이템 장착 표시 
         string equippedSymbol2 = equipItem.IsEquipped2 ? "[E]" : ""; 
 
+<<<<<<< Updated upstream
         Console.WriteLine($"- 1 {equippedSymbol1} {equipItem.ItemName1}|공격력 +{equipItem.ItemAtk}|----설명----");
         Console.WriteLine($"- 2 {equippedSymbol2} {equipItem.ItemName2}|방어력 +{equipItem.ItemDef}|----설명----");
+=======
+        Console.WriteLine($"- 1 {equippedSymbol1} {equipItem.ItemName1}|공격력 + {equipItem.ItemAtk}|----설명----");
+        Console.WriteLine($"- 2 {equippedSymbol2} {equipItem.ItemName2}|방어력 + {equipItem.ItemDef}|----설명----");
+        Console.WriteLine($"- 3 {equippedSymbol3} {equipItem.ItemName3}|체 력 +{equipItem.ItemHp}|----설명----");
+>>>>>>> Stashed changes
 
         Console.WriteLine("\n0. 돌아가기");
         Console.WriteLine();
