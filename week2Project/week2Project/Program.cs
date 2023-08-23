@@ -102,12 +102,12 @@ internal class Program
 
 
         Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.WriteLine("\n1. ");
+        Console.Write("\n1. ");
         Console.ResetColor();
         Console.WriteLine("상태보기");
 
         Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.WriteLine("\n2. ");
+        Console.Write("\n2. ");
         Console.ResetColor();
         Console.WriteLine("인벤토리");
         Console.WriteLine("\n원하시는 행동을 입력해주세요.");
@@ -184,8 +184,11 @@ internal class Program
         Console.WriteLine($"{equippedItemHp}");
         Console.ResetColor();
         Console.WriteLine($"소지금 : {player.G} G");
-       
-        Console.WriteLine("\n0. 돌아가기");
+
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.Write("\n0. ");
+        Console.ResetColor();
+        Console.WriteLine("돌아가기");
         //처음 화면으로 돌아가기 
         int input = CheakInput(0, 0);
         switch (input)
@@ -223,7 +226,14 @@ internal class Program
         Console.WriteLine($"{equippedSymbol2} {equipItem.ItemName2}| 방어력 + {equipItem.ItemDef} | 온갖 해로운 몬스터의 공격에서 눈의 안녕을 유지 시켜주는 안경");
         Console.WriteLine($"{equippedSymbol3} {equipItem.ItemName3}| 체  력 +{equipItem.ItemHp} | 엄청나게 쓰지만 커피를 마시면 빨리 정신을 차리게 해 체력을 올려준다.");
 
-        Console.WriteLine("\n1. 장착관리\n0. 돌아가기");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.Write("\n1. ");
+        Console.ResetColor();
+        Console.WriteLine("장착관리");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.Write("\n0. ");
+        Console.ResetColor();
+        Console.WriteLine("돌아가기");
         Console.WriteLine();
         Console.WriteLine("원하시는 행동을 입력해주세요.");
         Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -271,7 +281,10 @@ internal class Program
         Console.WriteLine($"- 2 {equippedSymbol2} {equipItem.ItemName2}| 방어력 +{equipItem.ItemDef}  | 온갖 해로운 몬스터의 공격에서 눈의 안녕을 유지 시켜주는 안경");
         Console.WriteLine($"- 3 {equippedSymbol3} {equipItem.ItemName3}| 체  력 +{equipItem.ItemHp} | 엄청나게 쓰지만 커피를 마시면 빨리 정신을 차리게 해 체력을 올려준다.");
 
-        Console.WriteLine("\n0. 돌아가기");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.Write("\n0. ");
+        Console.ResetColor();
+        Console.WriteLine("돌아가기");
         Console.WriteLine();
         Console.WriteLine("원하시는 행동을 입력해주세요.");
         Console.ForegroundColor = ConsoleColor.DarkMagenta;
