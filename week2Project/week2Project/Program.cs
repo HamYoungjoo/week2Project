@@ -9,7 +9,7 @@ internal class Program
     {
         DataSetting();
         DisplayIntro();
-
+         
     }
 
     static void DataSetting()
@@ -19,6 +19,22 @@ internal class Program
 
         //인벤토리 내 아이템 설정 (아이템1이름, 아이템2이름, 아이템3이름, 아이템1 효과(공격력), 아이템2 효과(방어력), 아이템 3 효과(체력))
         equipItem = new item("분노의 키보드","안녕안녕 안경","핵불면   커피", 7 , 5, 10); 
+    }
+
+    static int CheakInput(int min, int max)
+    { //입력한 숫자가 선택범위인지 체크 
+        while (true)
+        {
+            string input = Console.ReadLine();
+            bool parseSuccess = int.TryParse(input, out var ret);
+            if (parseSuccess)
+            {
+                if (ret >= min && ret <= max)
+                    return ret;
+            }
+
+            Console.WriteLine("잘못된 입력 입니다.");
+        }
     }
 
     static void DisplayIntro()
@@ -115,21 +131,7 @@ internal class Program
         
     }
 
-    static int CheakInput(int min,int max)
-    { //입력한 숫자가 선택범위인지 체크 
-        while (true)
-        {
-            string input = Console.ReadLine();
-            bool parseSuccess = int.TryParse(input, out var ret);
-            if (parseSuccess)
-            {
-                if (ret >= min && ret <= max)
-                    return ret;
-            }
-
-            Console.WriteLine("잘못된 입력 입니다.");
-        }
-    }
+    
 
 
 
