@@ -21,7 +21,7 @@ internal class Program
         player = new Character("HAM", "초보 개발자", 1, 10, 5, 100, 1500);
 
         //인벤토리 내 아이템 설정 (아이템1이름, 아이템2이름, 아이템3이름, 아이템1 효과(공격력), 아이템2 효과(방어력), 아이템 3 효과(체력))
-        equipItem = new item("아이템 이름 1","아이템 이름 2","아이템 이름 3", 7 , 5, 10); 
+        equipItem = new item("분노의 키보드","안녕안녕 안경","핵불면   커피", 7 , 5, 10); 
     }
 
     static void DisplayIntro()
@@ -224,9 +224,9 @@ internal class Program
         string equippedSymbol2 = equipItem.IsEquipped2 ? "[E]" : ""; //장착관리에서 장착 해제시 인벤토리 화면에서도 확인 가능 
         string equippedSymbol3 = equipItem.IsEquipped3 ? "[E]" : "";
 
-        Console.WriteLine($"{equippedSymbol1} {equipItem.ItemName1}|공격력 + {equipItem.ItemAtk}|----설명----"); // 아이템 만들어보기 
-        Console.WriteLine($"{equippedSymbol2} {equipItem.ItemName2}|방어력 + {equipItem.ItemDef}|----설명----");
-        Console.WriteLine($"{equippedSymbol3} {equipItem.ItemName3}|방어력 +{equipItem.ItemHp}|----설명----");
+        Console.WriteLine($"{equippedSymbol1} {equipItem.ItemName1}| 공격력 + {equipItem.ItemAtk} | 코드를 몰라 화가 날 때 키보드를 내리치면 공격력이 상승한다."); // 아이템 만들어보기 
+        Console.WriteLine($"{equippedSymbol2} {equipItem.ItemName2}| 방어력 + {equipItem.ItemDef} | 온갖 해로운 몬스터의 공격에서 눈의 안녕을 유지 시켜주는 안경");
+        Console.WriteLine($"{equippedSymbol3} {equipItem.ItemName3}| 체  력 +{equipItem.ItemHp} | 엄청나게 쓰지만 커피를 마시면 빨리 정신을 차리게 해 체력을 올려준다.");
 
         Console.WriteLine("\n1. 장착관리\n0. 돌아가기");
         Console.WriteLine();
@@ -272,9 +272,9 @@ internal class Program
         string equippedSymbol2 = equipItem.IsEquipped2 ? "[E]" : "";
         string equippedSymbol3 = equipItem.IsEquipped3 ? "[E]" : "";
 
-        Console.WriteLine($"- 1 {equippedSymbol1} {equipItem.ItemName1}|공격력 +{equipItem.ItemAtk}|----설명----");
-        Console.WriteLine($"- 2 {equippedSymbol2} {equipItem.ItemName2}|방어력 +{equipItem.ItemDef}|----설명----");
-        Console.WriteLine($"- 3 {equippedSymbol3} {equipItem.ItemName2}|방어력 +{equipItem.ItemDef}|----설명----");
+        Console.WriteLine($"- 1 {equippedSymbol1} {equipItem.ItemName1}| 공격력 +{equipItem.ItemAtk}  | 코드를 몰라 화가 날 때 키보드를 내리치면 공격력이 상승한다.");
+        Console.WriteLine($"- 2 {equippedSymbol2} {equipItem.ItemName2}| 방어력 +{equipItem.ItemDef}  | 온갖 해로운 몬스터의 공격에서 눈의 안녕을 유지 시켜주는 안경");
+        Console.WriteLine($"- 3 {equippedSymbol3} {equipItem.ItemName3}| 체  력 +{equipItem.ItemHp} | 엄청나게 쓰지만 커피를 마시면 빨리 정신을 차리게 해 체력을 올려준다.");
 
         Console.WriteLine("\n0. 돌아가기");
         Console.WriteLine();
